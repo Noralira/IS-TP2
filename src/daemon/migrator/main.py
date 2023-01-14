@@ -26,6 +26,8 @@ def print_psycopg2_exception(ex):
     print("pgcode:", ex.pgcode, "\n")
 
 
+
+
 if __name__ == "__main__":
 
     db_org = psycopg2.connect(host='db-xml', database='is', user='is', password='is')
@@ -52,6 +54,12 @@ if __name__ == "__main__":
         # !TODO: 3- Execute INSERT queries in the destination db
         # !TODO: 4- Make sure we store somehow in the origin database that certain records were already migrated.
         #          Change the db structure if needed.
+
+
+        # primeiro fazer select á tabela imported_documents onde o is_on_db_rel é false (db_xml)
+        # extrair os dados do xml de cada row (db_xml)
+        # usar os dados extraidos e inserir na base de dados relacional (db_rel)
+        # dps dos dados serem inseridos na db_rel, meter a true o is_on_db_rel para informar que essa row foi migrada
 
         db_org.close()
         db_dst.close()

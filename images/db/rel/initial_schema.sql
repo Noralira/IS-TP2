@@ -39,3 +39,52 @@ ALTER TABLE players
 
 
 
+--airlines
+	-- id
+	--name 
+	--created_on 
+	--updated_on
+
+--routes
+	--id
+	--destination
+	--source
+	--created_on 
+	--updated_on
+
+-- classes
+	-- id
+	--name
+	--created_on 
+	--updated_on
+
+--times_fligths
+	-- id
+	-- id_fligth PK
+	-- id_times PK
+	--duration
+	--days
+	--created_on 
+	--updated_on
+
+--times
+	-- id
+	--departure
+	--arrival
+	--created_on 
+	--updated_on
+
+--fligths
+	-- id
+	-- name
+	-- id_airline
+	-- id_routes
+	-- price
+	-- id_class
+	-- stops
+	-- id_time
+	--created_on 
+	--updated_on
+
+
+

@@ -2,30 +2,34 @@ import sys
 
 from flask import Flask, jsonify, request
 
-from entities import Team
+from entities import Route
 
 PORT = int(sys.argv[1]) if len(sys.argv) >= 2 else 9000
 
 # set of all teams
 # !TODO: replace by database access
-teams = [
-]
 
 app = Flask(__name__)
 app.config["DEBUG"] = True
 
 
-@app.route('/api/teams/', methods=['GET'])
-def get_teams():
-    return jsonify([team.__dict__ for team in teams])
+@app.route('/api/routes/', methods=['GET'])
+def get_routes():
+    routes = []
+    #Este metodo é suposto dar select de tudo da tabela routes e retornar um json
+    db_rel = psycopg2.connect(host='db-rel', database='is', user='is', password='is')
+
+    
+    cursor = db_rel.cursor()
+    cursor.execute("SELECT src FROM converted_documents")
+
+    for row in cursor.fetchall():
+        src_from_converted_docs.append(row[0])
+
+    return jsonify([route.__dict__ for route in routes])
 
 
-@app.route('/api/teams/', methods=['POST'])
-def create_team():
-    data = request.get_json()
-    team = Team(name=data['name'])
-    teams.append(team)
-    return jsonify(team.__dict__), 201
+
 
 
 if __name__ == '__main__':
