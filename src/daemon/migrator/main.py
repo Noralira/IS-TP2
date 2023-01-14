@@ -10,7 +10,7 @@ POLLING_FREQ = int(sys.argv[1]) if len(sys.argv) >= 2 else 60
 def print_psycopg2_exception(ex):
     # get details about the exception
     err_type, err_obj, traceback = sys.exc_info()
-
+    #efwf
     # get the line number when exception occured
     line_num = traceback.tb_lineno
 
