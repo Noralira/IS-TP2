@@ -37,8 +37,59 @@ ALTER TABLE players
         FOREIGN KEY (team_id) REFERENCES teams
             ON DELETE SET NULL;
 
+CREATE TABLE public.airlines (
+	id              uuid PRIMARY KEY DEFAULT uuid_generate_v4(),
+	name            VARCHAR(250) NOT NULL,
+	created_on      TIMESTAMP NOT NULL DEFAULT NOW(),
+	updated_on      TIMESTAMP NOT NULL DEFAULT NOW()
+);
 
+CREATE TABLE public.routes (
+	id              uuid PRIMARY KEY DEFAULT uuid_generate_v4(),
+	destination     VARCHAR(250) NOT NULL,
+	source          VARCHAR(250) NOT NULL,
+	created_on      TIMESTAMP NOT NULL DEFAULT NOW(),
+	updated_on      TIMESTAMP NOT NULL DEFAULT NOW()
+);
 
+CREATE TABLE public.classes (
+	id              uuid PRIMARY KEY DEFAULT uuid_generate_v4(),
+	name            VARCHAR(250) NOT NULL,
+	created_on      TIMESTAMP NOT NULL DEFAULT NOW(),
+	updated_on      TIMESTAMP NOT NULL DEFAULT NOW()
+);
+
+CREATE TABLE public.times_fligths (
+	id              uuid PRIMARY KEY DEFAULT uuid_generate_v4(),
+	name            VARCHAR(250) NOT NULL,
+	id_fligths 		uuid NOT NULL,
+	id_times 		uuid NOT NULL,
+	duration		FLOAT,
+	days            INT NOT NULL,
+	created_on      TIMESTAMP NOT NULL DEFAULT NOW(),
+	updated_on      TIMESTAMP NOT NULL DEFAULT NOW()
+);
+
+CREATE TABLE public.times (
+	id              uuid PRIMARY KEY DEFAULT uuid_generate_v4(),
+	departure       VARCHAR(250) NOT NULL,
+	arrival 		VARCHAR(250) NOT NULL,
+	created_on      TIMESTAMP NOT NULL DEFAULT NOW(),
+	updated_on      TIMESTAMP NOT NULL DEFAULT NOW()
+);
+
+CREATE TABLE public.flights (
+	id              uuid PRIMARY KEY DEFAULT uuid_generate_v4(),
+	name       		VARCHAR(250) NOT NULL,
+	id_airline 		uuid NOT NULL,
+	id_routes 		uuid NOT NULL,
+	id_classes 		uuid NOT NULL,
+	id_times 		uuid NOT NULL,
+	price			FLOAT NOT NULL,
+	stops			VARCHAR(250) NOT NULL,		
+	created_on      TIMESTAMP NOT NULL DEFAULT NOW(),
+	updated_on      TIMESTAMP NOT NULL DEFAULT NOW()
+);
 --airlines
 	-- id
 	--name 
@@ -80,9 +131,9 @@ ALTER TABLE players
 	-- id_airline
 	-- id_routes
 	-- price
-	-- id_class
+	-- id_classes
 	-- stops
-	-- id_time
+	-- id_times
 	--created_on 
 	--updated_on
 
