@@ -69,6 +69,11 @@ CREATE TABLE public.times_fligths (
 	created_on      TIMESTAMP NOT NULL DEFAULT NOW(),
 	updated_on      TIMESTAMP NOT NULL DEFAULT NOW()
 );
+ALTER TABLE times_fligths
+    ADD CONSTRAINT fk_id_flights FOREIGN KEY (id_fligths) REFERENCES flights (id);
+ALTER TABLE times_fligths
+    ADD CONSTRAINT fk_id_timesFOREIGN KEY (id_times) REFERENCES times (id);
+
 
 CREATE TABLE public.times (
 	id              uuid PRIMARY KEY DEFAULT uuid_generate_v4(),
@@ -90,6 +95,18 @@ CREATE TABLE public.flights (
 	created_on      TIMESTAMP NOT NULL DEFAULT NOW(),
 	updated_on      TIMESTAMP NOT NULL DEFAULT NOW()
 );
+
+ALTER TABLE fligths
+    ADD CONSTRAINT fk_id_airline FOREIGN KEY (id_airline) REFERENCES airlines (id);
+ALTER TABLE fligths
+    ADD CONSTRAINT fk_id_routes FOREIGN KEY (id_routes) REFERENCES routes (id);
+ALTER TABLE fligths
+    ADD CONSTRAINT fk_id_classes FOREIGN KEY (id_classes) REFERENCES classes (id);
+ALTER TABLE fligths
+    ADD CONSTRAINT fk_id_times FOREIGN KEY (id_times) REFERENCES times (id);
+
+
+
 --airlines
 	-- id
 	--name 
