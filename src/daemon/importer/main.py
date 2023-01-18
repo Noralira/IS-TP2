@@ -38,15 +38,19 @@ class CSVHandler(FileSystemEventHandler):
             return
 
         print(f"new file to convert: '{csv_path}'")
+
         # we generate a unique file name for the XML file
         xml_path = generate_unique_file_name(self._output_path)
+
         # we do the conversion
+        
         convert_csv_to_xml(csv_path, xml_path)
 
         # !TODO: once the conversion is done, we should updated the converted_documents tables
         self.insert_doc_into_converted_documents(csv_path=csv_path, xml_path=xml_path)
 
         print(f"new xml file generated: '{xml_path}'")
+
         # !TODO: we should store the XML document into the imported_documents table
         self.insert_xml_into_imported_documents(xml_path=xml_path)
 

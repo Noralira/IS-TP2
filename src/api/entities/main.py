@@ -1,6 +1,7 @@
 import sys
 import psycopg2
 from flask import Flask, jsonify, request
+import psycopg2.extras
 
 from entities import *
 
@@ -13,96 +14,158 @@ app = Flask(__name__)
 app.config["DEBUG"] = True
 
 
-@app.route('/api/route/', methods=['GET'])
+@app.route('/api/routes', methods=['GET'])
 def get_routes():
     routes = []
     db_rel = psycopg2.connect(host='db-rel', database='is', user='is', password='is')
     
-    cursor = db_rel.cursor()
-    cursor.execute("SELECT destination, source FROM routes")
+    cursor = db_rel.cursor(cursor_factory=psycopg2.extras.RealDictCursor)
+    cursor.execute("SELECT id, destination, source, created_on, updated_on FROM routes")
 
     for row in cursor.fetchall():
-        routes.append(row[0])
+        routes.append(row)
 
-    return jsonify([route.__dict__ for route in routes])
+    db_rel.close()
 
-@app.time('/api/time/', methods=['GET'])
+    return jsonify(routes)
+
+@app.route('/api/routes/<string:id_route>', methods=['GET'])
+def get_routes_by_id(id_route):
+    routes = []
+    db_rel = psycopg2.connect(host='db-rel', database='is', user='is', password='is')
+    
+    cursor = db_rel.cursor(cursor_factory=psycopg2.extras.RealDictCursor)
+    cursor.execute("SELECT id, destination, source, created_on, updated_on FROM routes WHERE id = %s", [id_route])
+
+    for row in cursor.fetchall():
+        routes.append(row)
+    
+    db_rel.close()
+
+    return jsonify(routes)
+
+
+@app.route('/api/times', methods=['GET'])
 def get_times():
     times = []
     db_rel = psycopg2.connect(host='db-rel', database='is', user='is', password='is')
     
-    cursor = db_rel.cursor()
-    cursor.execute("SELECT departure, arrival FROM times")
+    cursor = db_rel.cursor(cursor_factory=psycopg2.extras.RealDictCursor)
+    cursor.execute("SELECT id, departure, arrival, created_on, updated_on FROM times")
 
     for row in cursor.fetchall():
-        times.append(row[0])
+        times.append(row)
 
-    return jsonify([time.__dict__ for time in times])
+    db_rel.close()
 
-@app.airline('/api/airline/', methods=['GET'])
+    return jsonify(times)
+
+@app.route('/api/times/<string:id_time>', methods=['GET'])
+def get_times_by_id(id_time):
+    times = []
+    db_rel = psycopg2.connect(host='db-rel', database='is', user='is', password='is')
+    
+    cursor = db_rel.cursor(cursor_factory=psycopg2.extras.RealDictCursor)
+    cursor.execute("SELECT id, departure, arrival, created_on, updated_on FROM times WHERE id = %s", [id_time])
+
+    for row in cursor.fetchall():
+        times.append(row)
+
+    return jsonify(times)
+
+
+@app.route('/api/airlines', methods=['GET'])
 def get_airlines():
     airlines = []
     db_rel = psycopg2.connect(host='db-rel', database='is', user='is', password='is')
     
-    cursor = db_rel.cursor()
-    cursor.execute("SELECT name FROM airlines")
+    cursor = db_rel.cursor(cursor_factory=psycopg2.extras.RealDictCursor)
+    cursor.execute("SELECT id, name, created_on, updated_on FROM airlines")
 
     for row in cursor.fetchall():
-        airlines.append(row[0])
+        airlines.append(row)
 
-    return jsonify([airline.__dict__ for airline in airlines])
+    db_rel.close()
 
-@app.classe('/api/classe/', methods=['GET'])
+    return jsonify(airlines)
+
+
+@app.route('/api/airlines/<string:id_airline>', methods=['GET'])
+def get_airlines_by_id(id_airline):
+    airlines = []
+    db_rel = psycopg2.connect(host='db-rel', database='is', user='is', password='is')
+    
+    cursor = db_rel.cursor(cursor_factory=psycopg2.extras.RealDictCursor)
+    cursor.execute("SELECT id, name, created_on, updated_on FROM airlines WHERE id = %s", [id_airline])
+
+    for row in cursor.fetchall():
+        airlines.append(row)
+
+    return jsonify(airlines)
+
+
+
+@app.route('/api/classes', methods=['GET'])
 def get_classes():
     classes = []
     db_rel = psycopg2.connect(host='db-rel', database='is', user='is', password='is')
     
-    cursor = db_rel.cursor()
-    cursor.execute("SELECT name FROM classes")
+    cursor = db_rel.cursor(cursor_factory=psycopg2.extras.RealDictCursor)
+    cursor.execute("SELECT id, name, created_on, updated_on FROM classes")
 
     for row in cursor.fetchall():
-        classes.append(row[0])
+        classes.append(row)
 
-    return jsonify([classe.__dict__ for classe in classes])
+    db_rel.close()
 
-@app.flight('/api/flight/', methods=['GET'])
+    return jsonify(classes)
+
+
+@app.route('/api/classes/<string:id_classe>', methods=['GET'])
+def get_classes_by_id(id_classe):
+    classes = []
+    db_rel = psycopg2.connect(host='db-rel', database='is', user='is', password='is')
+    
+    cursor = db_rel.cursor(cursor_factory=psycopg2.extras.RealDictCursor)
+    cursor.execute("SELECT id, name, created_on, updated_on FROM classes WHERE id = %s", [id_classe])
+
+    for row in cursor.fetchall():
+        classes.append(row)
+
+    return jsonify(classes)
+
+
+@app.route('/api/flights', methods=['GET'])
 def get_flights():
     flights = []
     db_rel = psycopg2.connect(host='db-rel', database='is', user='is', password='is')
     
-    cursor = db_rel.cursor()
-    cursor.execute("SELECT name, id_airline, id_routes, id_classes, id_times, price, stops FROM flights")
+    cursor = db_rel.cursor(cursor_factory=psycopg2.extras.RealDictCursor)
+    cursor.execute("SELECT flights.id, flights.name, flights.price, flights.stops, routes.source, routes.destination, times.departure, times.arrival, times_fligths.duration, times_fligths.days,  flights.id_airline, flights.id_routes, flights.id_classes, flights.created_on, flights.updated_on FROM times_fligths INNER JOIN flights ON times_fligths.id_fligths = flights.id INNER JOIN times ON times_fligths.id_times = times.id INNER JOIN routes ON flights.id_routes = routes.id")
 
     for row in cursor.fetchall():
-        flights.append(row[0])
+        flights.append(row)
 
-    return jsonify([flight.__dict__ for flight in flights])
+    db_rel.close()
 
-@app.flight('/api/flight/', methods=['GET'])
-def get_flights():
+    return jsonify(flights)
+
+
+@app.route('/api/flights/<string:id_fligth>', methods=['GET'])
+def get_flights_by_id(id_fligth):
     flights = []
     db_rel = psycopg2.connect(host='db-rel', database='is', user='is', password='is')
     
-    cursor = db_rel.cursor()
-    cursor.execute("SELECT name, id_airline, id_routes, id_classes, id_times, price, stops FROM flights")
+    cursor = db_rel.cursor(cursor_factory=psycopg2.extras.RealDictCursor)
+    cursor.execute("SELECT flights.id, flights.name, flights.price, flights.stops, routes.source, routes.destination, times.departure, times.arrival, times_fligths.duration, times_fligths.days,  flights.id_airline, flights.id_routes, flights.id_classes, flights.created_on, flights.updated_on FROM times_fligths INNER JOIN flights ON times_fligths.id_fligths = flights.id INNER JOIN times ON times_fligths.id_times = times.id INNER JOIN routes ON flights.id_routes = routes.id WHERE flights.id = %s", [id_fligth])
 
     for row in cursor.fetchall():
-        flights.append(row[0])
+        flights.append(row)
 
-    return jsonify([flight.__dict__ for flight in flights])
+    db_rel.close()
 
-@app.flight('/api/time_flight/', methods=['GET'])
-def get_times_flights():
-    times_flights = []
-    db_rel = psycopg2.connect(host='db-rel', database='is', user='is', password='is')
-    
-    cursor = db_rel.cursor()
-    cursor.execute("SELECT name, id_flights, id_times, duration, days FROM times_flights")
+    return jsonify(flights)
 
-    for row in cursor.fetchall():
-        times_flights.append(row[0])
-
-    return jsonify([time_flight.__dict__ for time_flight in times_flights])
 
 
 if __name__ == '__main__':
