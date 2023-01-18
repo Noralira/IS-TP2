@@ -72,7 +72,7 @@ CREATE TABLE public.times_fligths (
 ALTER TABLE times_fligths
     ADD CONSTRAINT fk_id_flights FOREIGN KEY (id_fligths) REFERENCES flights (id);
 ALTER TABLE times_fligths
-    ADD CONSTRAINT fk_id_timesFOREIGN KEY (id_times) REFERENCES times (id);
+    ADD CONSTRAINT fk_id_times FOREIGN KEY (id_times) REFERENCES times (id);
 
 
 CREATE TABLE public.times (
@@ -96,13 +96,13 @@ CREATE TABLE public.flights (
 	updated_on      TIMESTAMP NOT NULL DEFAULT NOW()
 );
 
-ALTER TABLE fligths
+ALTER TABLE flights
     ADD CONSTRAINT fk_id_airline FOREIGN KEY (id_airline) REFERENCES airlines (id);
-ALTER TABLE fligths
+ALTER TABLE flights
     ADD CONSTRAINT fk_id_routes FOREIGN KEY (id_routes) REFERENCES routes (id);
-ALTER TABLE fligths
+ALTER TABLE flights
     ADD CONSTRAINT fk_id_classes FOREIGN KEY (id_classes) REFERENCES classes (id);
-ALTER TABLE fligths
+ALTER TABLE flights
     ADD CONSTRAINT fk_id_times FOREIGN KEY (id_times) REFERENCES times (id);
 
 
