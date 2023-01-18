@@ -59,19 +59,19 @@ CREATE TABLE public.classes (
 	updated_on      TIMESTAMP NOT NULL DEFAULT NOW()
 );
 
-CREATE TABLE public.times_fligths (
+CREATE TABLE public.times_flights (
 	id              uuid PRIMARY KEY DEFAULT uuid_generate_v4(),
 	name            VARCHAR(250) NOT NULL,
-	id_fligths 		uuid NOT NULL,
+	id_flights 		uuid NOT NULL,
 	id_times 		uuid NOT NULL,
 	duration		FLOAT,
 	days            INT NOT NULL,
 	created_on      TIMESTAMP NOT NULL DEFAULT NOW(),
 	updated_on      TIMESTAMP NOT NULL DEFAULT NOW()
 );
-ALTER TABLE times_fligths
-    ADD CONSTRAINT fk_id_flights FOREIGN KEY (id_fligths) REFERENCES flights (id);
-ALTER TABLE times_fligths
+ALTER TABLE times_flights
+    ADD CONSTRAINT fk_id_flights FOREIGN KEY (id_flights) REFERENCES flights (id);
+ALTER TABLE times_flights
     ADD CONSTRAINT fk_id_times FOREIGN KEY (id_times) REFERENCES times (id);
 
 
