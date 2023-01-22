@@ -12,21 +12,15 @@ import {
 } from "@mui/material";
 
 
-const DEMO_TIMES = [
-    
-    {"id": "0", "departure": "SpiceJet", "arrival": "SG-8709", "created_on":"Mumbai", "updated_on": "Economy"},
-
-];
 
 function Times() {
 
     const PAGE_SIZE = 10;
     const [page, setPage] = useState(1);
     const [data, setData] = useState(null);
-    const [maxDataSize, setMaxDataSize] = useState(DEMO_TIMES.length);
 
     useEffect(() => {
-        fetch('http://${process.env.REACT_APP_API_ENTITIES_URL}/api/times')
+        fetch('http://localhost:20001/api/times')
         .then ((response)=>response.json())
         .then((data)=>setData(data));
        

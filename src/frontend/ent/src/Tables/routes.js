@@ -12,21 +12,14 @@ import {
 } from "@mui/material";
 
 
-const DEMO_ROUTES = [
-    
-    {"id": "0", "destination": "SpiceJet", "source": "SG-8709","created_on":"Mumbai", "updated_on": "Economy"},
-
-];
-
 function Routes() {
 
     const PAGE_SIZE = 10;
     const [page, setPage] = useState(1);
     const [data, setData] = useState(null);
-    const [maxDataSize, setMaxDataSize] = useState(DEMO_ROUTES.length);
 
     useEffect(() => {
-        fetch('http://${process.env.REACT_APP_API_ENTITIES_URL}/api/routes')
+        fetch('http://localhost:20001/api/routes')
         .then ((response)=>response.json())
         .then((data)=>setData(data));
        

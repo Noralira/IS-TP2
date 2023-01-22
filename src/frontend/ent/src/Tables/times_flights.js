@@ -12,21 +12,14 @@ import {
 } from "@mui/material";
 
 
-const DEMO_TIMES_FLIGHTS = [
-    
-    {"id": "0", "id_flights": "SpiceJet", "id_times": "SG-8709", "duration":"Delhi", "days":"Evening","created_on":"Mumbai", "updated_on": "Economy"},
-
-];
-
 function times_flights() {
 
     const PAGE_SIZE = 10;
     const [page, setPage] = useState(1);
     const [data, setData] = useState(null);
-    const [maxDataSize, setMaxDataSize] = useState(DEMO_TIMES_FLIGHTS.length);
 
     useEffect(() => {
-        fetch('http://${process.env.REACT_APP_API_ENTITIES_URL}/api/times_flights')
+        fetch('http://localhost:20001/api/times_flights')
         .then ((response)=>response.json())
         .then((data)=>setData(data));
        

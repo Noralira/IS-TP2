@@ -12,25 +12,17 @@ import {
 } from "@mui/material";
 
 
-const DEMO_AIRLINES = [
-    
-    {"id": "0", "name": "SpiceJet", "created_on":"Mumbai", "updated_on": "Economy"},
-
-];
 
 function Airlines() {
 
     const PAGE_SIZE = 10;
     const [page, setPage] = useState(1);
     const [data, setData] = useState(null);
-    const [maxDataSize, setMaxDataSize] = useState(DEMO_AIRLINES.length);
 
     useEffect(() => {
-        fetch('http://${process.env.REACT_APP_API_ENTITIES_URL}/api/airlines')
+        fetch('http://localhost:20001/api/airlines')
         .then ((response)=>response.json())
         .then((data)=>setData(data));
-        //!FIXME: this is to simulate how to retrieve data from the server
-        //!FIXME: the entities server URL is available on process.env.REACT_APP_API_ENTITIES_URL
     }, [page])
 
     return (
