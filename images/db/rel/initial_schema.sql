@@ -89,7 +89,6 @@ CREATE TABLE public.flights (
 	id_airline 		uuid NOT NULL,
 	id_routes 		uuid NOT NULL,
 	id_classes 		uuid NOT NULL,
-	id_times 		uuid NOT NULL,
 	price			FLOAT NOT NULL,
 	stops			VARCHAR(250) NOT NULL,		
 	created_on      TIMESTAMP NOT NULL DEFAULT NOW(),
