@@ -208,7 +208,7 @@ if __name__ == "__main__":
 
                 flight_id = create_flights(db_dst, airline_id, route_id, classe_id, row['name'], row['price'], row['stops'])
 
-                #create_times_flights(db_dst, flight_id, times_id, row['duration'], row['days'])
+                create_times_flights(db_dst, flight_id, times_id, row['duration'], row['days'])
 
             
             
