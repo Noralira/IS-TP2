@@ -1,25 +1,46 @@
 import Players from "../Tables/Players";
+import Flights from "../Tables/flights";
+import Classes from "../Tables/classes";
+import Airlines from "../Tables/airlines";
+import Routes from "../Tables/routes";
+import times_flights from "../Tables/times_flights";
+import Times from "../Tables/times";
+
 
 const Sections = [
 
     {
-        id: "players",
-        label: "Players",
-        content: <Players/>
+        id: "flights",
+        label: "Flights",
+        content: <Flights/>
     },
 
     {
-        id: "teams",
-        label: "Teams",
-        content: <h1>Teams - Work in progresss</h1>
+        id: "airlines",
+        label: "Airlines",
+        content: <Airlines/>
     },
 
     {
-        id: "countries",
-        label: "Countries",
-        content: <h1>Countries - Work in progress</h1>
+        id: "classes",
+        label: "Classes",
+        content:<Classes/>
+    },
+    {
+        id: "routes",
+        label: "Routes",
+        content: <Routes/>
+    },
+    {
+        id: "times_flights",
+        label: "Times_flights",
+        content: <times_flights/>
+    },
+    {
+        id: "times",
+        label: "Times",
+        content: <Times/>
     }
-
 ];
 
 export default Sections;
