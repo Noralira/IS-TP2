@@ -12,22 +12,21 @@ import {
 } from "@mui/material";
 
 
-const DEMO_FLIGHTS = [
+const DEMO_TIMES_FLIGHTS = [
     
-    {"id": "0", "name": "SpiceJet", "id_airline": "SG-8709", "id_routes":"Delhi", "id_classes":"Evening", "price":"zero", "stops":"Night",
-"created_on":"Mumbai", "updated_on": "Economy"},
+    {"id": "0", "id_flights": "SpiceJet", "id_times": "SG-8709", "duration":"Delhi", "days":"Evening","created_on":"Mumbai", "updated_on": "Economy"},
 
 ];
 
-function Flights() {
+function times_flights() {
 
     const PAGE_SIZE = 10;
     const [page, setPage] = useState(1);
     const [data, setData] = useState(null);
-    const [maxDataSize, setMaxDataSize] = useState(DEMO_FLIGHTS.length);
+    const [maxDataSize, setMaxDataSize] = useState(DEMO_TIMES_FLIGHTS.length);
 
     useEffect(() => {
-        fetch('http://${process.env.REACT_APP_API_ENTITIES_URL}/api/flights')
+        fetch('http://${process.env.REACT_APP_API_ENTITIES_URL}/api/times_flights')
         .then ((response)=>response.json())
         .then((data)=>setData(data));
        
@@ -35,21 +34,20 @@ function Flights() {
 
     return (
         <>
-            <h1>Flights</h1>
+            <h1>Times Flights</h1>
 
             <TableContainer component={Paper}>
                 <Table sx={{minWidth: 650}} aria-label="simple table">
                     <TableHead>
                         <TableRow>
                             <TableCell component="th" width={"1px"} align="center">ID</TableCell>
-                            <TableCell>Name</TableCell>
-                            <TableCell>Id airline</TableCell>
-                            <TableCell>Id routes</TableCell>
-                            <TableCell>Id classes</TableCell>
-                            <TableCell>Price</TableCell>
-                            <TableCell>Stops</TableCell>
+                            <TableCell>Id flight</TableCell>
+                            <TableCell>Id times</TableCell>
+                            <TableCell>Duration</TableCell>
+                            <TableCell>Days</TableCell>
                             <TableCell>Created on</TableCell>
                             <TableCell>Updated on</TableCell>
+
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -62,25 +60,16 @@ function Flights() {
                                     >
                                         <TableCell component="td" align="center">{row.id}</TableCell>
                                         <TableCell component="td" scope="row">
-                                            {row.name}
+                                            {row.id_flights}
                                         </TableCell>
                                         <TableCell component="td" align="center" scope="row">
-                                            {row.flight}
+                                            {row.id_times}
                                         </TableCell>
                                         <TableCell component="td" align="center" scope="row">
-                                            {row.id_airline}
+                                            {row.duration}
                                         </TableCell>
                                         <TableCell component="td" align="center" scope="row">
-                                            {row.id_routes}
-                                        </TableCell>
-                                        <TableCell component="td" align="center" scope="row">
-                                            {row.id_classes}
-                                        </TableCell>
-                                        <TableCell component="td" align="center" scope="row">
-                                            {row.price}
-                                        </TableCell>
-                                        <TableCell component="td" align="center" scope="row">
-                                            {row.stops}
+                                            {row.days}
                                         </TableCell>
                                         <TableCell component="td" align="center" scope="row">
                                             {row.created_on}
@@ -88,12 +77,13 @@ function Flights() {
                                         <TableCell component="td" align="center" scope="row">
                                             {row.updated_on}
                                         </TableCell>
+                                        
                                 
                                     </TableRow>
                                 ))
                                 :
                                 <TableRow>
-                                    <TableCell colSpan={9}>
+                                    <TableCell colSpan={7}>
                                         <CircularProgress/>
                                     </TableCell>
                                 </TableRow>
@@ -120,4 +110,4 @@ function Flights() {
     );
 }
 
-export default Flights;
+export default times_flights;

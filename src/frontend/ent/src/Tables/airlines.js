@@ -12,30 +12,30 @@ import {
 } from "@mui/material";
 
 
-const DEMO_FLIGHTS = [
+const DEMO_AIRLINES = [
     
-    {"id": "0", "name": "SpiceJet", "id_airline": "SG-8709", "id_routes":"Delhi", "id_classes":"Evening", "price":"zero", "stops":"Night",
-"created_on":"Mumbai", "updated_on": "Economy"},
+    {"id": "0", "name": "SpiceJet", "created_on":"Mumbai", "updated_on": "Economy"},
 
 ];
 
-function Flights() {
+function Airlines() {
 
     const PAGE_SIZE = 10;
     const [page, setPage] = useState(1);
     const [data, setData] = useState(null);
-    const [maxDataSize, setMaxDataSize] = useState(DEMO_FLIGHTS.length);
+    const [maxDataSize, setMaxDataSize] = useState(DEMO_AIRLINES.length);
 
     useEffect(() => {
-        fetch('http://${process.env.REACT_APP_API_ENTITIES_URL}/api/flights')
+        fetch('http://${process.env.REACT_APP_API_ENTITIES_URL}/api/airlines')
         .then ((response)=>response.json())
         .then((data)=>setData(data));
-       
+        //!FIXME: this is to simulate how to retrieve data from the server
+        //!FIXME: the entities server URL is available on process.env.REACT_APP_API_ENTITIES_URL
     }, [page])
 
     return (
         <>
-            <h1>Flights</h1>
+            <h1>Airlines</h1>
 
             <TableContainer component={Paper}>
                 <Table sx={{minWidth: 650}} aria-label="simple table">
@@ -43,11 +43,6 @@ function Flights() {
                         <TableRow>
                             <TableCell component="th" width={"1px"} align="center">ID</TableCell>
                             <TableCell>Name</TableCell>
-                            <TableCell>Id airline</TableCell>
-                            <TableCell>Id routes</TableCell>
-                            <TableCell>Id classes</TableCell>
-                            <TableCell>Price</TableCell>
-                            <TableCell>Stops</TableCell>
                             <TableCell>Created on</TableCell>
                             <TableCell>Updated on</TableCell>
                         </TableRow>
@@ -65,35 +60,18 @@ function Flights() {
                                             {row.name}
                                         </TableCell>
                                         <TableCell component="td" align="center" scope="row">
-                                            {row.flight}
-                                        </TableCell>
-                                        <TableCell component="td" align="center" scope="row">
-                                            {row.id_airline}
-                                        </TableCell>
-                                        <TableCell component="td" align="center" scope="row">
-                                            {row.id_routes}
-                                        </TableCell>
-                                        <TableCell component="td" align="center" scope="row">
-                                            {row.id_classes}
-                                        </TableCell>
-                                        <TableCell component="td" align="center" scope="row">
-                                            {row.price}
-                                        </TableCell>
-                                        <TableCell component="td" align="center" scope="row">
-                                            {row.stops}
-                                        </TableCell>
-                                        <TableCell component="td" align="center" scope="row">
                                             {row.created_on}
                                         </TableCell>
                                         <TableCell component="td" align="center" scope="row">
                                             {row.updated_on}
                                         </TableCell>
+                    
                                 
                                     </TableRow>
                                 ))
                                 :
                                 <TableRow>
-                                    <TableCell colSpan={9}>
+                                    <TableCell colSpan={4}>
                                         <CircularProgress/>
                                     </TableCell>
                                 </TableRow>
@@ -120,4 +98,4 @@ function Flights() {
     );
 }
 
-export default Flights;
+export default Airlines;
