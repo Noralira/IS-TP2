@@ -16,35 +16,28 @@ const DEMO_FLIGHTS = [
     
     {"id": "0", "airline": "SpiceJet", "flight": "SG-8709", "source_city":"Delhi", "departure_time":"Evening", "stops":"zero", "arrival_time":"Night",
 "destination_city":"Mumbai", "class": "Economy", "duration":"2.17", "days_left": "1", "price":"5953"},
-    {"id": "39", "name": "Ander Herrera", "age": "33"},
-    {"id": "45", "name": "Andreas Pereira", "age": "26"},
-    {"id": "51", "name": "Angel Gomes", "age": "22"},
-    {"id": "56", "name": "Anthony Martial", "age": "26"},
-    {"id": "59", "name": "Antonio Valencia", "age": "37"},
-    {"id": "66", "name": "Ashley Young", "age": "37"},
-    {"id": "111", "name": "Chris Smalling", "age": "32"},
-    {"id": "145", "name": "David de Gea", "age": "31"},
-    {"id": "174", "name": "Eric Bertrand Bailly", "age": "28"},
-    {"id": "185", "name": "Faustino Marcos Alberto Rojo", "age": "32"},
-    {"id": "198", "name": "Frederico Rodrigues Santos", "age": "29"},
-    {"id": "241", "name": "James Garner", "age": "21"},
-    {"id": "265", "name": "Jesse Lingard", "age": "29"},
-    {"id": "293", "name": "José Diogo Dalot Teixeira", "age": "23"},
-    {"id": "304", "name": "Juan Mata", "age": "34"},
-    {"id": "336", "name": "Lee Grant", "age": "39"},
-    {"id": "356", "name": "Luke Shaw", "age": "27"},
-    {"id": "368", "name": "Marcus Rashford", "age": "24"},
-    {"id": "374", "name": "Marouane Fellaini", "age": "34"},
-    {"id": "378", "name": "Mason Greenwood", "age": "20"},
-    {"id": "388", "name": "Matteo Darmian", "age": "32"},
-    {"id": "426", "name": "Nemanja Matić", "age": "34"},
-    {"id": "441", "name": "Paul Pogba", "age": "29"},
-    {"id": "449", "name": "Phil Jones", "age": "30"},
-    {"id": "472", "name": "Romelu Lukaku", "age": "29"},
-    {"id": "495", "name": "Scott McTominay", "age": "25"},
-    {"id": "503", "name": "Sergio Germán Romero", "age": "35"},
-    {"id": "525", "name": "Tahith Chong", "age": "22"},
-    {"id": "546", "name": "Victor Nilsson Lindelöf", "age": "28"}
+
+{"id": "158", "airline": "Indigo", "flight": "6E-6202", "source_city":"Delhi", "departure_time":"Morning", "stops":"zero", "arrival_time":"Afternoon",
+"destination_city":"Mumbai", "class": "Economy", "duration":"2.17", "days_left": "2", "price":"7845"},
+
+{"id": "218", "airline": "Vistara", "flight": "UK-813", "source_city":"Delhi", "departure_time":"Evening", "stops":"one", "arrival_time":"Morning",
+"destination_city":"Mumbai", "class": "Economy", "duration":"17.83", "days_left": "2", "price":"15353"},
+
+{"id": "553", "airline": "Vistara", "flight": "UK-747", "source_city":"Delhi", "departure_time":"Early_Morning", "stops":"one", "arrival_time":"Night",
+"destination_city":"Mumbai", "class": "Economy", "duration":"13.83", "days_left": "4", "price":"18345"},
+
+{"id": "1100", "airline": "Air_India", "flight": "AI-429", "source_city":"Delhi", "departure_time":"Morning", "stops":"one", "arrival_time":"Evening",
+"destination_city":"Mumbai", "class": "Economy", "duration":"7.25", "days_left": "7", "price":"21180"},
+
+{"id": "15743", "airline": "Air_India", "flight": "AI-883", "source_city":"Delhi", "departure_time":"Night", "stops":"one", "arrival_time":"Night",
+"destination_city":"Bangalore", "class": "Economy", "duration":"24.5", "days_left": "29", "price":"6533"},
+
+{"id": "7343", "airline": "Indigo", "flight": "6E-2193", "source_city":"Delhi", "departure_time":"Afternoon", "stops":"zeonero", "arrival_time":"Evening",
+"destination_city":"Mumbai", "class": "Economy", "duration":"3.83", "days_left": "37", "price":"3968"},
+
+{"id": "11715", "airline": "GO_FIRST", "flight": "G8-143", "source_city":"Delhi", "departure_time":"Morning", "stops":"one", "arrival_time":"Evening",
+"destination_city":"Bangalore", "class": "Economy", "duration":"7.17", "days_left": "11", "price":"7424"}
+
 ];
 
 function Flights() {
@@ -58,8 +51,7 @@ function Flights() {
         //!FIXME: this is to simulate how to retrieve data from the server
         //!FIXME: the entities server URL is available on process.env.REACT_APP_API_ENTITIES_URL
         setData(null);
-        setTimeout(() => {
-            console.log(`fetching from ${process.env.REACT_APP_API_ENTITIES_URL}`)
+        setTimeout(() => {            console.log(`fetching from ${process.env.REACT_APP_API_ENTITIES_URL}`)
             setData(DEMO_FLIGHTS.filter((item, index) => Math.floor(index / PAGE_SIZE) === (page - 1)));
         }, 500);
     }, [page])
