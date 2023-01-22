@@ -3,7 +3,7 @@ import Flights from "../Tables/flights";
 import Classes from "../Tables/classes";
 import Airlines from "../Tables/airlines";
 import Routes from "../Tables/routes";
-import times_flights from "../Tables/times_flights";
+import Times_flights from "../Tables/times_flights";
 import Times from "../Tables/times";
 
 
@@ -34,7 +34,7 @@ const Sections = [
     {
         id: "times_flights",
         label: "Times_flights",
-        content: <times_flights/>
+        content: <Times_flights/>
     },
     {
         id: "times",
