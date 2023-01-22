@@ -61,7 +61,6 @@ CREATE TABLE public.classes (
 
 CREATE TABLE public.times_flights (
 	id              uuid PRIMARY KEY DEFAULT uuid_generate_v4(),
-	name            VARCHAR(250) NOT NULL,
 	id_flights 		uuid NOT NULL,
 	id_times 		uuid NOT NULL,
 	duration		FLOAT,
