@@ -1,4 +1,5 @@
 import TopTeams from "../Procedures/TopTeams";
+import TopFlights from "../Procedures/flights";
 
 const Sections = [
 
@@ -12,6 +13,11 @@ const Sections = [
         id: "top-scorers",
         label: "Top Scorers",
         content: <h1>Top Scorers - Work in progresss</h1>
+    },
+    {
+        id: "top-flights",
+        label: "Top Flights",
+        content: <TopFlights/>
     }
 
 ];
