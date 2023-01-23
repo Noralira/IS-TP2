@@ -94,4 +94,4 @@ function Routes() {
     );
 }
 
-export default Flights;
+export default Routes;
