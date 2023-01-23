@@ -12,15 +12,16 @@ import {
 } from "@mui/material";
 
 
+
 function Flights() {
 
     const PAGE_SIZE = 10;
     const [page, setPage] = useState(1);
-    const [data, setData] = useState(null);
+    const [data, setData] = useState([]);
     const [maxDataSize] = useState(data.length);
 
     useEffect(() => {
-        fetch('http://localhost:20001/api/api/flights')
+        fetch('http://localhost:20001/api/flights')
         .then ((response)=>response.json())
         .then((data)=>setData(data));
        
@@ -48,13 +49,15 @@ function Flights() {
                     <TableBody>
                         {
                             data ?
-                                data.map((row) => (
+                                data.map((row, index) => (
                                     <TableRow
-                                        key={row.id}
+                                        key={index}
                                         style={{background: "gray", color: "black"}}
                                     >
-                                        <TableCell component="td" align="center">{row.id}</TableCell>
-                                        <TableCell component="td" scope="row">
+                                        <TableCell component="td" align="center" scope="row">
+                                            {row.id}
+                                            </TableCell>
+                                        <TableCell component="td" align="center" scope="row">
                                             {row.name}
                                         </TableCell>
                                         <TableCell component="td" align="center" scope="row">
@@ -86,7 +89,7 @@ function Flights() {
                                 ))
                                 :
                                 <TableRow>
-                                    <TableCell colSpan={9}>
+                                    <TableCell colSpan={10}>
                                         <CircularProgress/>
                                     </TableCell>
                                 </TableRow>

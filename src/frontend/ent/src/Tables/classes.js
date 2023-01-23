@@ -17,7 +17,7 @@ function Classes() {
 
     const PAGE_SIZE = 10;
     const [page, setPage] = useState(1);
-    const [data, setData] = useState(null);
+    const [data, setData] = useState([]);
     const [maxDataSize] = useState(data.length);
 
 

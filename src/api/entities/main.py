@@ -2,7 +2,7 @@ import sys
 import psycopg2
 from flask import Flask, jsonify, request
 import psycopg2.extras
-
+from flask_cors import CORS
 from entities import *
 
 PORT = int(sys.argv[1]) if len(sys.argv) >= 2 else 9000
@@ -11,6 +11,7 @@ PORT = int(sys.argv[1]) if len(sys.argv) >= 2 else 9000
 # !TODO: replace by database access
 
 app = Flask(__name__)
+CORS(app)
 app.config["DEBUG"] = True
 
 
