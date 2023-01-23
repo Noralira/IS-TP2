@@ -1,4 +1,3 @@
-import Players from "../Tables/Players";
 import Flights from "../Tables/flights";
 import Classes from "../Tables/classes";
 import Airlines from "../Tables/airlines";
