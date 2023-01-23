@@ -17,6 +17,7 @@ function Routes() {
     const PAGE_SIZE = 10;
     const [page, setPage] = useState(1);
     const [data, setData] = useState(null);
+    const [maxDataSize, setMaxDataSize] = useState(data.length);
 
     useEffect(() => {
         fetch('http://localhost:20001/api/routes')
