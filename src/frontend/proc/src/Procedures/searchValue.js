@@ -4,19 +4,14 @@ import {Box, CircularProgress, Container, FormControl, InputLabel, MenuItem, Sel
 
 function searchValue() {
 
-    const [selectedFlight, setSelectedFlight] = useState("");
-
+    const [selectedValue, setSelectedValue] = useState("");
     const [procData, setProcData] = useState(null);
 
     useEffect(() => {
         fetch('http://localhost:20001/api/searchValue')
         .then ((response)=>response.json())
         .then((procData)=>setProcData(procData));
-        
-        //!FIXME: this is to simulate how to retrieve data from the server
-        //!FIXME: the entities server URL is available on process.env.REACT_APP_API_ENTITIES_URL
-        
-    }, [selectedFlight])
+    }, [selectedValue])
 
     return (
         <>
@@ -27,14 +22,14 @@ function searchValue() {
                 <Box>
                     <h2 style={{color: "white"}}>Options</h2>
                     <FormControl fullWidth>
-                        <InputLabel id="Flight-select-label">Flight</InputLabel>
+                        <InputLabel id="Value-select-label">Value</InputLabel>
                         <Select
-                            labelId="Flight-select-label"
+                            labelId="Value-select-label"
                             id="demo-simple-select"
-                            value={selectedFlight}
-                            label="Flight"
+                            value={selectedValue}
+                            label="Value"
                             onChange={(e, v) => {
-                                setSelectedFlight(e.target.value)
+                                setSelectedValue(e.target.value)
                             }}
                         >
                             <MenuItem value={""}><em>None</em></MenuItem>
@@ -58,10 +53,10 @@ function searchValue() {
                     procData ?
                         <ul>
                             {
-                                procData.map(data => <li>{data.price}</li>)
+                                procData.map(data => <li>{data.val}</li>)
                             }
                         </ul> :
-                        selectedFlight? <CircularProgress/> : "--"
+                        selectedValue? <CircularProgress/> : "--"
                 }
                
             </Container>
