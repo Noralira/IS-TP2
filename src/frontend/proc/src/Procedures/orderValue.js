@@ -8,7 +8,6 @@ function orderValue() {
 
     const [procData, setProcData] = useState(null);
 
-
     useEffect(() => {
         fetch('http://localhost:20001/api/orderValue')
         .then ((response)=>response.json())
@@ -70,4 +69,4 @@ function orderValue() {
     );
 }
 
-export default query1;
+export default orderValue;

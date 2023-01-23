@@ -13,10 +13,7 @@ function query1() {
         fetch('http://localhost:20001/api/query1')
         .then ((response)=>response.json())
         .then((procData)=>setProcData(procData));
-        
-        //!FIXME: this is to simulate how to retrieve data from the server
-        //!FIXME: the entities server URL is available on process.env.REACT_APP_API_ENTITIES_URL
-        
+     
     }, [selectedFlight])
 
     return (
