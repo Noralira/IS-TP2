@@ -2,28 +2,26 @@ import React, {useEffect, useState} from "react";
 import {Box, CircularProgress, Container, FormControl, InputLabel, MenuItem, Select} from "@mui/material";
 
 
-function TopFlights() {
+function orderValue() {
 
     const [selectedFlight, setSelectedFlight] = useState("");
 
     const [procData, setProcData] = useState(null);
-    const [gqlData, setGQLData] = useState(null);
+
 
     useEffect(() => {
-        fetch('http://localhost:20001/api/flights/price')
+        fetch('http://localhost:20001/api/orderValue')
         .then ((response)=>response.json())
         .then((procData)=>setProcData(procData));
         
         //!FIXME: this is to simulate how to retrieve data from the server
         //!FIXME: the entities server URL is available on process.env.REACT_APP_API_ENTITIES_URL
-      
-
         
     }, [selectedFlight])
 
     return (
         <>
-            <h1>Top flights</h1>
+            <h1>Ordenar preço</h1>
 
             <Container maxWidth="100%"
                        sx={{backgroundColor: 'background.default', padding: "2rem", borderRadius: "1rem"}}>
@@ -66,19 +64,10 @@ function TopFlights() {
                         </ul> :
                         selectedFlight? <CircularProgress/> : "--"
                 }
-                <h2>Results <small>(GraphQL)</small></h2>
-                {
-                    gqlData ?
-                        <ul>
-                            {
-                                gqlData.map(data => <li>{data.price}</li>)
-                            }
-                        </ul> :
-                        selectedFlight ? <CircularProgress/> : "--"
-                }
+                
             </Container>
         </>
     );
 }
 
-export default TopFlights;
+export default query1;

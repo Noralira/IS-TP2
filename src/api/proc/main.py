@@ -1,6 +1,9 @@
 import sys
-
-from flask import Flask
+import psycopg2
+from flask import Flask, jsonify, request
+import psycopg2.extras
+from flask_cors import CORS
+import server
 
 PORT = int(sys.argv[1]) if len(sys.argv) >= 2 else 9000
 
@@ -18,6 +21,28 @@ def get_best_players():
         "imgUrl": "https://cdn-icons-png.flaticon.com/512/805/805401.png",
         "number": 7
     }]
+
+
+
+@app.route('/api/searchValue/<string:value>', methods=['GET'])
+def search_value(value):
+    return jsonify(server.searchValue(value))
+
+@app.route('/api/query1', methods=['GET'])
+def query_1():
+    return jsonify(server.query1())
+
+@app.route('/api/searchId/<string:id>', methods=['GET'])
+def search_id(id):
+    return jsonify(server.searchId(id))   
+
+@app.route('/api/orderValue/<string:ordValue>', methods=['GET'])
+def order_value(ordValue):
+    return jsonify(server.orderValue(ordValue))
+
+@app.route('/api/classFind/<string:time>', methods=['GET'])
+def class_find(time):
+    return jsonify(server.classFind(time))
 
 
 if __name__ == '__main__':

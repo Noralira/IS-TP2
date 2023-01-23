@@ -30,6 +30,12 @@ if __name__ == "__main__":
         # register both functions
         server.register_function(string_reverse)
         server.register_function(string_length)
+        server.register_function(searchValue)
+        server.register_function(searchId)
+        server.register_function(query1)
+        server.register_function(classFind)
+        server.register_function(orderValue)
+        
 
         # start the server
         print(f"Starting the RPC Server in port {PORT}...")
