@@ -3,8 +3,9 @@ import psycopg2
 from flask import Flask, jsonify, request
 import psycopg2.extras
 from flask_cors import CORS
-import 
+import xmlrpc.server
 
+server = xmlrpc.client.ServerProxy('http://0.0.0.0:9000')
 
 PORT = int(sys.argv[1]) if len(sys.argv) >= 2 else 9000
 

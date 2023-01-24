@@ -3,8 +3,6 @@ import Classes from "../Tables/classes";
 import Airlines from "../Tables/airlines";
 import Routes from "../Tables/routes";
 import Times from "../Tables/times";
-
-
 const Sections = [
 
     {
@@ -35,5 +33,4 @@ const Sections = [
         content: <Times/>
     }
 ];
-
 export default Sections;
